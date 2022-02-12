@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<script src="js/Toast.js"></script>
+        <style>
+        </style>
+    </head>
+	<body>
+		<button onClick="makeToast();">Fixed Toast(Mouse Position)</button>
+		<br><br>
+		<button onClick="makeToast2(this);">Fixed Toast(Element Position)</button>
+		<br><br>
+		<button onClick="makeToast3();">Movable Toast</button>
+    </body>
+</html>
+
+<script type="text/javascript">
+	Input.initialize();
+	
+	function makeToast()
+	{
+		var toast = new Toast('toast', "Fixed Toast");
+		toast.setOffset(0, 40);
+		toast.setFixed(true);
+		toast.setDelay(1, 2);
+		toast.show();
+	}
+	
+	function makeToast2(el)
+	{
+		var toast = new Toast('toast', "Fixed Toast");
+		toast.setOffset(0, 40);
+		toast.setFixed(true);
+		toast.setStartPosition(getOffset(el).left + el.clientWidth / 2, getOffset(el).top + el.clientHeight / 2);
+		toast.setDelay(1, 2);
+		toast.show();
+	}
+	
+	function getOffset(el) {
+		const rect = el.getBoundingClientRect();
+		return {
+			left: rect.left + window.scrollX,
+			top: rect.top + window.scrollY
+		};
+	}
+	
+	function makeToast3()
+	{
+		var toast = new Toast('toast', "Movable Toast");
+		toast.setOffset(0, 40);
+		toast.setFixed(false);
+		toast.setDelay(1, 2);
+		toast.show();
+	}
+</script>
